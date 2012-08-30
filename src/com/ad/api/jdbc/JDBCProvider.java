@@ -5,9 +5,9 @@ import java.sql.*;
 public enum JDBCProvider {
     POSTGRESQL_ADDB(
             "org.postgresql.Driver",
-            "jdbc:postgresql://localhost/addb",
-            "postgres",
-            "537588"
+            "jdbc:postgresql://localhost/dbname",
+            "userName",
+            "password"
     );
 
     private final String driverName;
