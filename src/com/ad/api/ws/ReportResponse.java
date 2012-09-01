@@ -2,7 +2,6 @@ package com.ad.api.ws;
 
 import com.ad.api.jdbc.JDBCProvider;
 import com.ad.core.Builder;
-import sun.beans.editors.IntegerEditor;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.ResultSet;
