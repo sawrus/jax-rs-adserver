@@ -103,7 +103,7 @@ public class ResponseBuilder<TRequest extends Cache.CacheElement, TResponse exte
                 ReportRequest reportRequest = memCache.get(memKey, ReportRequest.class);
                 if (reportRequest != null)
                 {
-                    ResponseBuilder<ReportRequest, ReportResponse> builder = new ResponseBuilder<ReportRequest, ReportResponse>(dbKey);
+                    ResponseBuilder<ReportRequest, ReportResponse> builder = new ResponseBuilder<ReportRequest, ReportResponse>(memKey);
                     builder.setMemCache(memCache);
                     builder.setProvider(provider);
                     builder.setRequestClass(ReportRequest.class);
@@ -124,7 +124,7 @@ public class ResponseBuilder<TRequest extends Cache.CacheElement, TResponse exte
                 ADRequest adRequest = memCache.get(memKey, ADRequest.class);
                 if (adRequest != null)
                 {
-                    ResponseBuilder<ADRequest, ADResponse> builder = new ResponseBuilder<ADRequest, ADResponse>(dbKey);
+                    ResponseBuilder<ADRequest, ADResponse> builder = new ResponseBuilder<ADRequest, ADResponse>(memKey);
                     builder.setMemCache(memCache);
                     builder.setProvider(provider);
                     builder.setRequestClass(ADRequest.class);
