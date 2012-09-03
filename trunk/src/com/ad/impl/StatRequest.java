@@ -1,6 +1,6 @@
 package com.ad.impl;
 
-public class StatRequest {
+public final class StatRequest {
     public final String platformName;
     public final String applicationName;
     public final Integer pubId;

@@ -19,7 +19,7 @@ ant build.jar & mv adserver.jar lib/
 ### Not required steps:
 # 3. Also, need to install and configure PostgreSQL database.
 #    Need to define DB options (username, password and DB name) into file JDBCProvider.java.
-#    See enum com.ad.impl.JDBCProvider: POSTGRESQL_ADDB for details.
+#    See enum com.ad.api.JDBCProvider: POSTGRESQL_ADDB for details.
 # 4. Call script dump.sql
 
 # 5. The last step below (start RESTful web service):

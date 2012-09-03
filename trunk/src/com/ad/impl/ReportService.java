@@ -1,10 +1,15 @@
 package com.ad.impl;
 
+import com.ad.api.AdService;
+
 import javax.ws.rs.*;
 
 @Path("/reporting")
-public class ReportService {
-    private final JDBCProvider addb = JDBCProvider.POSTGRESQL_ADDB;
+public final class ReportService extends AdService {
+    public ReportService() {
+        setCacheMode(CacheMode.OFF);
+        jdbcProvider.openConnection();
+    }
 
     @GET
     @Path("/campaign")
@@ -13,14 +18,6 @@ public class ReportService {
             @DefaultValue("h2sdr2d") @QueryParam("pub_id") String pub_id,
             @DefaultValue("h2sdr2d") @QueryParam("campaign_id") String campaign_id
     ) {
-        try {
-            ReportRequest reportRequest = new ReportRequest(pub_id, campaign_id);
-            System.out.println(reportRequest);
-            return ReportResponse.from(reportRequest).setProvider(addb).build();
-        } catch (Exception e)
-        {
-            System.err.println(e);
-            return ReportResponse.fake().build();
-        }
+        return processRequest(new ReportRequest(pub_id, campaign_id), ReportResponse.class);
     }
 }

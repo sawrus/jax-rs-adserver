@@ -1,16 +1,21 @@
 package com.ad.impl;
 
+import com.ad.api.AdService;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 @Path("/stat")
-public class StatService {
-    private final JDBCProvider addb = JDBCProvider.POSTGRESQL_ADDB;
+public final class StatService extends AdService{
     private final String C = "$C";
     private final String UPDATE_STAT_QUERY = "UPDATE campaign SET " + C + "  WHERE campaign_id=%s AND pub_id=%s";
     private final String UPDATE_IMPRESSIONS_QUERY = UPDATE_STAT_QUERY.replace(C, "impressions=impressions+1");
     private final String UPDATE_CLICKS_QUERY = UPDATE_STAT_QUERY.replace(C, "clicks=clicks+1");
     private final String UPDATE_COMPLETED_QUERY = UPDATE_STAT_QUERY.replace(C, "completed=completed+1");
+
+    public StatService() {
+        jdbcProvider.openConnection();
+    }
 
     @GET
     @Path("/impression")
@@ -31,7 +36,7 @@ public class StatService {
         //todo: Analyze input data
         StatRequest statRequest = new StatRequest(platform, app, pub_id, owner_app_id, ads_offer_id, ads_banner_id, version, network_id, html_type, position, country, unlocker);
 
-        addb.executeUpdate(String.format(UPDATE_IMPRESSIONS_QUERY, owner_app_id, ads_offer_id));
+        jdbcProvider.executeUpdate(String.format(UPDATE_IMPRESSIONS_QUERY, owner_app_id, ads_offer_id));
         return Response.ok().build();
     }
 
@@ -54,7 +59,7 @@ public class StatService {
         //todo: Analyze input data
         StatRequest statRequest = new StatRequest(platform, app, pub_id, owner_app_id, ads_offer_id, ads_banner_id, version, network_id, html_type, position, country, unlocker);
 
-        addb.executeUpdate(String.format(UPDATE_CLICKS_QUERY, owner_app_id, ads_offer_id));
+        jdbcProvider.executeUpdate(String.format(UPDATE_CLICKS_QUERY, owner_app_id, ads_offer_id));
         return Response.ok().build();
     }
 
@@ -77,7 +82,7 @@ public class StatService {
         //todo: Analyze input data
         StatRequest statRequest = new StatRequest(platform, app, pub_id, owner_app_id, ads_offer_id, ads_banner_id, version, network_id, html_type, position, country, unlocker);
 
-        addb.executeUpdate(String.format(UPDATE_COMPLETED_QUERY, owner_app_id, ads_offer_id));
+        jdbcProvider.executeUpdate(String.format(UPDATE_COMPLETED_QUERY, owner_app_id, ads_offer_id));
         return Response.ok().build();
     }
 }

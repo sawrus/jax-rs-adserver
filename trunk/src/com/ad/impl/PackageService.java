@@ -1,10 +1,11 @@
 package com.ad.impl;
 
+import com.ad.api.AdService;
+
 import javax.ws.rs.*;
 
 @Path("/ad")
-public class ADService {
-    private final JDBCProvider addb = JDBCProvider.POSTGRESQL_ADDB;
+public final class PackageService extends AdService {
 
     @GET
     @Path("/json")
@@ -17,12 +18,7 @@ public class ADService {
             @QueryParam("width") Integer width,
             @QueryParam("height") Integer height
     ) {
-        //todo: Analyze input data
-        ADRequest adRequest = new ADRequest(platform, app, pub_id, version, width, height);
-
-        System.out.println(adRequest);
-
-        return ADResponse.fake().build();
+        return processRequest(new ADRequest(platform, app, pub_id, version, width, height), ADResponse.class);
     }
 
     @GET
@@ -36,20 +32,6 @@ public class ADService {
             @QueryParam("width") Integer width,
             @QueryParam("height") Integer height
     ) {
-        //todo: Analyze input data
-        ADRequest adRequest = new ADRequest(platform, app, pub_id, version, width, height);
-
-        System.out.println(adRequest);
-
-        return HTML_RESPONSE;
+        return String.valueOf(processRequest(new ADRequest(platform, app, pub_id, version, width, height), Banner.class));
     }
-
-    private static final String HTML_RESPONSE = "<html>\n" +
-            "  <head>\n" +
-            "    <title>Banner information</title>\n" +
-            "  </head>\n" +
-            "  <body>\n" +
-            "    <h1>Banner</h1>\n" +
-            "  </body>\n" +
-            "</html>";
 }

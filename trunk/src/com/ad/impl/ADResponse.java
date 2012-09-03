@@ -1,6 +1,7 @@
 package com.ad.impl;
 
 import com.ad.api.Builder;
+import com.ad.api.JDBCProvider;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Arrays;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @XmlRootElement
-public class ADResponse {
+public final class ADResponse extends JDBCProvider.DBElement {
     public final Extra extra;
     public final List<Networks> networks;
     public final List<INetworks> inetworks;

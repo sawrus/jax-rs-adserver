@@ -1,6 +1,9 @@
 package com.ad.impl;
 
-public class ReportRequest {
+import com.ad.api.Cache;
+import com.ad.api.Constants;
+
+public final class ReportRequest implements Cache.CacheElement {
     public final String pubId;
     public final String campaignId;
 
@@ -15,5 +18,10 @@ public class ReportRequest {
                 "pubId='" + pubId + '\'' +
                 ", campaignId='" + campaignId + '\'' +
                 '}';
+    }
+
+    @Override
+    public String geKey() {
+        return ReportRequest.class.getSimpleName() + Constants.CLASS_SEPARATOR + campaignId;
     }
 }
