@@ -1,6 +1,9 @@
 package com.ad.impl;
 
-public class ADRequest {
+import com.ad.api.Cache;
+import com.ad.api.Constants;
+
+public final class ADRequest implements Cache.CacheElement {
     public final String platformName;
     public final String applicationName;
     public final String pubId;
@@ -27,5 +30,10 @@ public class ADRequest {
                 ", bannerWidth=" + bannerWidth +
                 ", bannerHeight=" + bannerHeight +
                 '}';
+    }
+
+    @Override
+    public String geKey() {
+        return ADRequest.class.getSimpleName() + Constants.CLASS_SEPARATOR + pubId;
     }
 }

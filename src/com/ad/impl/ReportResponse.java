@@ -1,6 +1,7 @@
 package com.ad.impl;
 
 import com.ad.api.Builder;
+import com.ad.api.JDBCProvider;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.ResultSet;
@@ -10,9 +11,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 @XmlRootElement
-public class ReportResponse {
+public final class ReportResponse extends JDBCProvider.DBElement<ReportRequest> {
     public final String pub_id;
     public final Set<Campaign> campaign_id;
+
+    public ReportResponse(JDBCProvider provider, ReportRequest reportRequest) {
+        this(ReportResponse.from(reportRequest).setProvider(provider).build());
+    }
+
+    private ReportResponse(ReportResponse reportResponse) {
+        pub_id = reportResponse.pub_id;
+        campaign_id = reportResponse.campaign_id;
+    }
 
     public ReportResponse(String pub_id, Set<Campaign> campaign_id) {
         this.pub_id = pub_id;
