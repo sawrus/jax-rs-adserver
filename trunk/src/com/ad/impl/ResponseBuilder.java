@@ -58,7 +58,11 @@ public class ResponseBuilder<TRequest extends Cache.CacheElement, TResponse exte
     {
         private final MemCache memCache = MemCache.getInstance();
         private final JDBCProvider provider = JDBCProvider.POSTGRESQL_DRIVER;
-        private final Set<String> dbKeys = new HashSet<String>();
+        private boolean isCompleted = false;
+
+        public boolean isCompleted() {
+            return isCompleted;
+        }
 
         public Daemon() {
             provider.openConnection();
@@ -78,7 +82,7 @@ public class ResponseBuilder<TRequest extends Cache.CacheElement, TResponse exte
 
         @Override
         public void run() {
-            while (true)
+            while (!isCompleted())
             {
                 processReportKeys();
                 processPackageKeys();
