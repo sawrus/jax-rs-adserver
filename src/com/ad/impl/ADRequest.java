@@ -1,4 +1,4 @@
-package com.ad.api.ws;
+package com.ad.impl;
 
 public class ADRequest {
     public final String platformName;

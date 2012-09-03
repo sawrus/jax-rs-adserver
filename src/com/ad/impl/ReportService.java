@@ -1,8 +1,4 @@
-package com.ad.services;
-
-import com.ad.api.jdbc.JDBCProvider;
-import com.ad.api.ws.ReportRequest;
-import com.ad.api.ws.ReportResponse;
+package com.ad.impl;
 
 import javax.ws.rs.*;
 

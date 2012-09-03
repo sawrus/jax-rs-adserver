@@ -1,7 +1,4 @@
-package com.ad.services;
-
-import com.ad.api.jdbc.JDBCProvider;
-import com.ad.api.ws.StatRequest;
+package com.ad.impl;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;

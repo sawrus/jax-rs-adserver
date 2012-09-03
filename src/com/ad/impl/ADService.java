@@ -1,14 +1,6 @@
-package com.ad.services;
-
-import com.ad.api.jdbc.JDBCProvider;
-import com.ad.api.ws.ADRequest;
-import com.ad.api.ws.ADResponse;
+package com.ad.impl;
 
 import javax.ws.rs.*;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.HashSet;
-import java.util.Set;
 
 @Path("/ad")
 public class ADService {
