@@ -1,4 +1,4 @@
-package com.ad.tools;
+package com.ad.api;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -11,21 +11,31 @@ import java.io.IOException;
 import java.net.URI;
 
 public class ClientTest {
+    private static final String ILLEGAL_ARGUMENT = "Use: 1) httpServerAddress (127.0.0.1:1111)";
+    private final WebResource service;
 
-    private static final String DEFAULT_URI = "http://localhost:9998/";
-
-    private final ClientConfig clientConfig = new DefaultClientConfig();
-    private final Client client = Client.create(clientConfig);
-    private final URI uri = UriBuilder.fromUri(DEFAULT_URI).build();
-    private final WebResource service = client.resource(uri);
-
-    public static void main(String[] args) throws IOException {
-        ClientTest.test();
+    public ClientTest(String URI) {
+        URI uri = UriBuilder.fromUri(URI).build();
+        ClientConfig clientConfig = new DefaultClientConfig();
+        Client client = Client.create(clientConfig);
+        service = client.resource(uri);
     }
 
-    public static void test()
+    public static void main(String[] args) throws IOException {
+        if (args.length >= 1)
+        {
+            ClientTest.test(Constants.HTTP_URI_PREFIX + args[0]);
+        }
+        else
+        {
+            throw new IllegalArgumentException(ILLEGAL_ARGUMENT);
+        }
+
+    }
+
+    public static void test(String uri)
     {
-        ClientTest clientTest = new ClientTest();
+        ClientTest clientTest = new ClientTest(uri);
         clientTest.testADService();
         clientTest.testReportService();
         clientTest.testStateService();

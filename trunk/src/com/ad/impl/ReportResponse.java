@@ -1,7 +1,6 @@
-package com.ad.api.ws;
+package com.ad.impl;
 
-import com.ad.api.jdbc.JDBCProvider;
-import com.ad.core.Builder;
+import com.ad.api.Builder;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.ResultSet;

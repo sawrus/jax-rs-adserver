@@ -1,4 +1,4 @@
-package com.ad.api.jdbc;
+package com.ad.impl;
 
 import java.sql.*;
 

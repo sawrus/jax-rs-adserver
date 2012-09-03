@@ -85,6 +85,8 @@
     <pathelement location="${basedir}/lib/wadl-core.jar"/>
     <pathelement location="${basedir}/lib/wadl2java.jar"/>
     <pathelement location="${basedir}/lib/tuscany-json-nodep-2.0-M5.1.jar"/>
+    <pathelement location="${basedir}/lib/spymemcached-2.8.4.jar"/>
+    <pathelement location="${basedir}/lib/postgresql-9.1-902.jdbc4.jar"/>
   </path>
   
   <!-- Modules -->
